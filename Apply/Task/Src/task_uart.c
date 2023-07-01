@@ -6,6 +6,7 @@
 
 uint8_t ReceNum;
 uint8_t PCBuffer[100];
+uint8_t SDcardStatus = 0; 	//SD卡状态标志位, 0:SD未插 1:SD卡存在
 
 //串口数据解析，返回第二个指令值
 static int8_t S_UartDataSort(void)
@@ -76,9 +77,18 @@ void Task_PCUartListen(void)
 
         //测试TATFS
         case '3':
-            Task_TATFS_Test();
-            printf("TATFS TEST END\r\n");
-            break;
+            if(SDcardStatus)
+            {
+                Task_TATFS_Test();
+                printf("TATFS TEST END\r\n");
+                break;
+            }
+            else
+            {
+                printf("SDcard Error\r\n");
+                printf("TATFS TEST SKIP\r\n");
+                break;
+            }
 
         //测试AT24CXX
         case '4':

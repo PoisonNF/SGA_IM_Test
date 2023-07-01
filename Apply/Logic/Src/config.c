@@ -230,3 +230,4 @@ tagJY901_T JY901S =
 	.tUART.tGPIO[1].tGPIOPort 						= GPIOA,					/* GPIO∑÷◊È */
 	.tUART.tGPIO[1].ucAFMode						= NO_REMAP,					/* GPIO÷ÿ”≥…‰ */
 };
+
